@@ -2,7 +2,7 @@ package GroupBy.GroupBy.bean;
 
 import java.sql.Date;
 
-public class Member {
+public class member {
 
 	private Long id;
 	private String firstName;

@@ -23,7 +23,8 @@ public class photoController {
 
 	}
 
-	public List<Photo> findAll() {
+	public List<Photo> findAll()  {
+
 		List<Photo> Photos = new ArrayList<Photo>();
 		PreparedStatement pstemt = null;
 		try {
@@ -58,8 +59,9 @@ public class photoController {
 
 	}
 
-	public Photo findById(int id) {
+	public Photo findById(int id) throws SQLException {
 		Photo ph = new Photo();
+		conn = ds.getConnection();
 		try {
 			PreparedStatement pstemt = null;
 			String str = "Select * from photo where photoId=?";
@@ -86,8 +88,9 @@ public class photoController {
 		return ph;
 	}
 	
-	public String photoAdd(Photo ph){
+	public String photoAdd(Photo ph) throws SQLException{
 		String str="Insert into photo value(?,?)";
+		conn = ds.getConnection();
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
@@ -111,8 +114,9 @@ public class photoController {
 				return "Sucess insert "+rs+" datas";
 	}
 	
-	public int upDate(Photo ph){
+	public int upDate(Photo ph) throws SQLException{
 		String str="Updata photo set photo=? where photoId=?";
+		conn = ds.getConnection();
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
@@ -139,8 +143,9 @@ public class photoController {
 		return rs;
 	}
 	
-	public int delete(int id){
+	public int delete(int id) throws SQLException{
 		String str="Delete form photo where id=?";
+		conn = ds.getConnection();
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);

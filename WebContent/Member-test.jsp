@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <sql:query var="rs" dataSource="jdbc/TestDB">
-select id, foo, bar from testdata
+
 </sql:query>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,20 +13,19 @@ select id, foo, bar from testdata
 	<%@ page import="java.sql.*"%>
 	<%@ page import="javax.sql.DataSource"%>
 	<%@ page import="javax.naming.*"%>
-	<%@ page import="GroupBy.GroupBy.bean.Member"%>
-	<%@ page import="GroupBy.GroupBy.controller.MemberController"%>
+	<%@ page import="GroupBy.GroupBy.bean.member"%>
+	<%@ page import="GroupBy.GroupBy.controller.memberController"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.*"%>
 	<%@ page import="java.text.SimpleDateFormat"%>
-	import java.text.SimpleDateFormat;
 	<%@ page import="java.sql.Date"%>
 	<%
 		InitialContext context = new InitialContext();
 		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 		Connection conn = ds.getConnection();
-		MemberController test = new MemberController();
-		Member bean = new Member();
-		List members = new ArrayList();
+		memberController test = new memberController();
+		member bean = new member();
+		List <member>members = new ArrayList<member>();
 
 		java.sql.Date d2 = java.sql.Date.valueOf("2012-05-01");
 
@@ -40,11 +39,11 @@ select id, foo, bar from testdata
 		bean.setPassword("455");
 		bean.setId(1L);
 		System.out.println(bean);
-		int rs = test.update(bean);
-
 		members = test.findAll();
-		System.out.println(rs);
 		System.out.println(members);
+		int rs = test.delete(3L);
+
+
 		conn.close();
 	%>
 	<form action="" method="post">
