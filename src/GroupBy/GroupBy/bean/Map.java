@@ -1,6 +1,6 @@
 package GroupBy.GroupBy.bean;
 
-public class map {
+public class Map {
 	private Long mapId;
 	private Long eventId;
 

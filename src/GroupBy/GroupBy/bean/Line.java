@@ -1,6 +1,6 @@
 package GroupBy.GroupBy.bean;
 
-public class line {
+public class Line {
 private Long lineId;
 private Long historyId;
 private String desc;

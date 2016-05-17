@@ -2,7 +2,7 @@ package GroupBy.GroupBy.bean;
 
 import java.sql.Date;
 
-public class event {
+public class Event {
 	private Long eventId;
 	private Long nemberId;
 	private String local;

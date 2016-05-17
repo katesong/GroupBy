@@ -2,7 +2,7 @@ package GroupBy.GroupBy.bean;
 
 import java.util.Arrays;
 
-public class fb {
+public class Fb {
 private Long fbId;
 private Long textId;
 private String descText;

@@ -1,6 +1,6 @@
 package GroupBy.GroupBy.bean;
 
-public class calendarId {
+public class CalendarId {
 	private Long calendarId;
 	private Long eventId;
 

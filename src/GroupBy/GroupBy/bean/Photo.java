@@ -2,7 +2,7 @@ package GroupBy.GroupBy.bean;
 
 import java.util.Arrays;
 
-public class photo {
+public class Photo {
 	private int photoId;
 	private byte[] photo;
 
