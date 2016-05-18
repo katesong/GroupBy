@@ -11,20 +11,20 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import GroupBy.GroupBy.bean.member;
+import GroupBy.GroupBy.bean.Member;
 
-public class memberController {
+public class MemberController {
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public memberController() throws NamingException {
+	public MemberController() throws NamingException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 	}
 	
-	public List<member> findAll() {
+	public List<Member> findAll() {
 	
-		List<member> members = new ArrayList<member>();
+		List<Member> Members = new ArrayList<Member>();
 		PreparedStatement pstemt = null;
 		try {
 			conn = ds.getConnection();
@@ -32,17 +32,17 @@ public class memberController {
 			pstemt = conn.prepareStatement(stmt);
 			ResultSet rs = pstemt.executeQuery();
 			while (rs.next()) {
-				member member = new member();
-				member.setId(rs.getLong(1));
-				member.setFirstName(rs.getString(2));
-				member.setLastName(rs.getString(3));
-				member.setBirthDate(rs.getDate(4));
-				member.setSex(rs.getString(5));
-				member.setPhone(rs.getInt(6));
-				member.setEmail(rs.getString(7));
-				member.setUserName(rs.getString(8));
-				member.setPassword(rs.getString(9));
-				members.add(member);			
+				Member Member = new Member();
+				Member.setId(rs.getLong(1));
+				Member.setFirstName(rs.getString(2));
+				Member.setLastName(rs.getString(3));
+				Member.setBirthDate(rs.getDate(4));
+				Member.setSex(rs.getString(5));
+				Member.setPhone(rs.getInt(6));
+				Member.setEmail(rs.getString(7));
+				Member.setUserName(rs.getString(8));
+				Member.setPassword(rs.getString(9));
+				Members.add(Member);			
 			}
 			try {
 				if (pstemt != null) {
@@ -61,29 +61,29 @@ public class memberController {
 		} catch (SQLException e) {
 		}
 
-		return members;
+		return Members;
 
 	}
 	
-	public member findById(int id) throws SQLException{
+	public Member findById(int id) throws SQLException{
 		String str="Select * from member where memberId=?";
 		conn = ds.getConnection();
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
 			pstm.setInt(1,id);
 			ResultSet rs=pstm.executeQuery();
-			member member =new member();
+			Member Member =new Member();
 			while(rs.next()){
 				Long lid=new Long((long) id);
-				member.setId(lid);
-				member.setFirstName(rs.getString(2));
-				member.setLastName(rs.getString(3));
-				member.setBirthDate(rs.getDate(4));
-				member.setSex(rs.getString(5));
-				member.setPhone(rs.getInt(6));
-				member.setEmail(rs.getString(7));
-				member.setUserName(rs.getString(8));
-				member.setPassword(rs.getString(9));
+				Member.setId(lid);
+				Member.setFirstName(rs.getString(2));
+				Member.setLastName(rs.getString(3));
+				Member.setBirthDate(rs.getDate(4));
+				Member.setSex(rs.getString(5));
+				Member.setPhone(rs.getInt(6));
+				Member.setEmail(rs.getString(7));
+				Member.setUserName(rs.getString(8));
+				Member.setPassword(rs.getString(9));
 			}
 			try {
 				if(pstm!=null){
@@ -97,7 +97,7 @@ public class memberController {
 				e.printStackTrace();
 			}
 			
-			return member;
+			return Member;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -140,7 +140,7 @@ public class memberController {
 //		
 //	}
 //	
-	public int insert(member member) throws SQLException{
+	public int insert(Member Member) throws SQLException{
 		String str="insert into member (firstName,lastName,birthDate,sex,phone,email,username,password) values(?,?,?,?,?,?,?,?)";
 		int rs=0;
 		conn = ds.getConnection();
@@ -176,21 +176,21 @@ public class memberController {
 		return rs;
 	}
 	
-	public int update(member member) throws SQLException{
+	public int update(Member Member) throws SQLException{
 		String str="Update member set firstName=?,lastName=?,birthDate=?,sex=?,phone=?,email=?,username=?,password=? where memberId=?";
 		int rs=0;
 		conn = ds.getConnection();
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
-			pstm.setString(1, member.getFirstName());
-			pstm.setString(2, member.getLastName());
-			pstm.setDate(3, member.getBirthDate());
-			pstm.setString(4, member.getSex());
-			pstm.setInt(5, member.getPhone());
-			pstm.setString(6, member.getEmail());
-			pstm.setString(7, member.getUserName());
-			pstm.setString(8, member.getPassword());
-			pstm.setLong(9, member.getId());
+			pstm.setString(1, Member.getFirstName());
+			pstm.setString(2, Member.getLastName());
+			pstm.setDate(3, Member.getBirthDate());
+			pstm.setString(4, Member.getSex());
+			pstm.setInt(5, Member.getPhone());
+			pstm.setString(6, Member.getEmail());
+			pstm.setString(7, Member.getUserName());
+			pstm.setString(8, Member.getPassword());
+			pstm.setLong(9, Member.getId());
 			rs = pstm.executeUpdate();
 			try {if(pstm!=null){
 				pstm.close();}

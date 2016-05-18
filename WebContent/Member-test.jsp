@@ -13,8 +13,9 @@
 	<%@ page import="java.sql.*"%>
 	<%@ page import="javax.sql.DataSource"%>
 	<%@ page import="javax.naming.*"%>
-	<%@ page import="GroupBy.GroupBy.bean.member"%>
-	<%@ page import="GroupBy.GroupBy.controller.memberController"%>
+	<%@ page import="GroupBy.GroupBy.bean.Member"%>
+	<%@ page import="GroupBy.GroupBy.controller.MemberController"%>
+	<%@ page import="GroupBy.GroupBy.controller.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.*"%>
 	<%@ page import="java.text.SimpleDateFormat"%>
@@ -23,10 +24,9 @@
 		InitialContext context = new InitialContext();
 		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 		Connection conn = ds.getConnection();
-		memberController test = new memberController();
-		member bean = new member();
-		List <member>members = new ArrayList<member>();
-
+		MemberController test = new MemberController();
+		Member bean = new Member();		
+		List <Member>members = new ArrayList<Member>();
 		java.sql.Date d2 = java.sql.Date.valueOf("2012-05-01");
 
 		bean.setFirstName("test");
@@ -43,7 +43,7 @@
 		System.out.println(members);
 		int rs = test.delete(3L);
 
-
+	
 		conn.close();
 	%>
 	<form action="" method="post">
