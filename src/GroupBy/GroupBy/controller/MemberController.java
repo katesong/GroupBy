@@ -17,9 +17,10 @@ public class MemberController {
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public MemberController() throws NamingException {
+	public MemberController() throws NamingException, SQLException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
+		conn = ds.getConnection();
 	}
 	
 	public List<Member> findAll() {
