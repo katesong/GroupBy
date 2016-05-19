@@ -14,7 +14,7 @@
 	<%@ page import="javax.sql.DataSource"%>
 	<%@ page import="javax.naming.*"%>
 	<%@ page import="GroupBy.GroupBy.bean.Member"%>
-	<%@ page import="GroupBy.GroupBy.controller.MemberController"%>
+	<%@ page import="GroupBy.GroupBy.dao.MemberJNDIDao"%>
 	<%@ page import="GroupBy.GroupBy.controller.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.*"%>
@@ -24,7 +24,7 @@
 		InitialContext context = new InitialContext();
 		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 		Connection conn = ds.getConnection();
-		MemberController test = new MemberController();
+		MemberJNDIDao test = new MemberJNDIDao();
 		Member bean = new Member();		
 		List <Member>members = new ArrayList<Member>();
 		java.sql.Date d2 = java.sql.Date.valueOf("2012-05-01");

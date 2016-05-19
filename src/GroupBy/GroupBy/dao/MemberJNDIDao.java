@@ -1,4 +1,4 @@
-package GroupBy.GroupBy.controller;
+package GroupBy.GroupBy.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,16 +13,16 @@ import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Member;
 
-public class MemberController {
+public class MemberJNDIDao implements MemberDao{
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public MemberController() throws NamingException, SQLException {
+	public MemberJNDIDao() throws NamingException, SQLException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 		conn = ds.getConnection();
 	}
-	
+	@Override
 	public List<Member> findAll() {
 	
 		List<Member> Members = new ArrayList<Member>();
@@ -65,10 +65,15 @@ public class MemberController {
 		return Members;
 
 	}
-	
-	public Member findById(int id) throws SQLException{
+	@Override
+	public Member findById(int id) {
 		String str="Select * from member where memberId=?";
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
 			pstm.setInt(1,id);
@@ -140,11 +145,16 @@ public class MemberController {
 //		
 //		
 //	}
-//	
-	public int insert(Member Member) throws SQLException{
+//	@Override
+	public int insert(Member Member) {
 		String str="insert into member (firstName,lastName,birthDate,sex,phone,email,username,password) values(?,?,?,?,?,?,?,?)";
 		int rs=0;
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement pstm=null;
 		try {
 //			pstm=conn.prepareStatement(str);
@@ -177,10 +187,15 @@ public class MemberController {
 		return rs;
 	}
 	
-	public int update(Member Member) throws SQLException{
+	public int update(Member Member){
 		String str="Update member set firstName=?,lastName=?,birthDate=?,sex=?,phone=?,email=?,username=?,password=? where memberId=?";
 		int rs=0;
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
 			pstm.setString(1, Member.getFirstName());

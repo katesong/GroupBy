@@ -1,4 +1,4 @@
-package GroupBy.GroupBy.controller;
+package GroupBy.GroupBy.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +13,11 @@ import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Photo;
 
-public class PhotoController {
+public class PhotoJNDIDao {
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public PhotoController() throws NamingException {
+	public PhotoJNDIDao() throws NamingException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 
