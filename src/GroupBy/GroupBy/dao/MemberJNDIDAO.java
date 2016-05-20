@@ -13,11 +13,11 @@ import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Member;
 
-public class MemberJNDIDao implements MemberDao{
+public class MemberJNDIDAO implements MemberDAO{
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public MemberJNDIDao() throws NamingException, SQLException {
+	public MemberJNDIDAO() throws NamingException, SQLException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 		conn = ds.getConnection();

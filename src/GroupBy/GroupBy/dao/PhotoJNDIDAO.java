@@ -13,11 +13,11 @@ import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Photo;
 
-public class PhotoJNDIDao {
+public class PhotoJNDIDAO {
 	private Connection conn = null;
 	private DataSource ds = null;
 
-	public PhotoJNDIDao() throws NamingException {
+	public PhotoJNDIDAO() throws NamingException {
 		InitialContext context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/GroupBy");
 

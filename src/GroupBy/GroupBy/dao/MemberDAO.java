@@ -6,7 +6,7 @@ import java.util.List;
 import GroupBy.GroupBy.bean.Member;
 
 
-public interface MemberDao {
+public interface MemberDAO {
 	public List<Member> findAll();
 	public Member findById(int id);
 	public int insert(Member Member);
