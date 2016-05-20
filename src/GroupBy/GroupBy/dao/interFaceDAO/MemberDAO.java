@@ -1,4 +1,4 @@
-package GroupBy.GroupBy.dao;
+package GroupBy.GroupBy.dao.interFaceDAO;
 
 import java.sql.SQLException;
 import java.util.List;

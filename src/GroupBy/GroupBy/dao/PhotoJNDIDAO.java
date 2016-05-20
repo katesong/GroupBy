@@ -12,8 +12,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Photo;
+import GroupBy.GroupBy.dao.interFaceDAO.PhotoDAO;
 
-public class PhotoJNDIDAO {
+public class PhotoJNDIDAO implements PhotoDAO {
 	private Connection conn = null;
 	private DataSource ds = null;
 
@@ -59,9 +60,14 @@ public class PhotoJNDIDAO {
 
 	}
 
-	public Photo findById(int id) throws SQLException {
+	public Photo findById(int id)  {
 		Photo ph = new Photo();
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement pstemt = null;
 			String str = "Select * from photo where photoId=?";
@@ -88,9 +94,14 @@ public class PhotoJNDIDAO {
 		return ph;
 	}
 	
-	public String photoAdd(Photo ph) throws SQLException{
+	public String photoAdd(Photo ph){
 		String str="Insert into photo value(?,?)";
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
@@ -114,9 +125,14 @@ public class PhotoJNDIDAO {
 				return "Sucess insert "+rs+" datas";
 	}
 	
-	public int upDate(Photo ph) throws SQLException{
+	public int upDate(Photo ph){
 		String str="Updata photo set photo=? where photoId=?";
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);
@@ -143,9 +159,14 @@ public class PhotoJNDIDAO {
 		return rs;
 	}
 	
-	public int delete(int id) throws SQLException{
+	public int delete(int id){
 		String str="Delete form photo where id=?";
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int rs=0;
 		try {
 			PreparedStatement pstm=conn.prepareStatement(str);

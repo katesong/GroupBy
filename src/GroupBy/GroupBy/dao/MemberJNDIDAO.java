@@ -12,6 +12,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import GroupBy.GroupBy.bean.Member;
+import GroupBy.GroupBy.dao.interFaceDAO.MemberDAO;
 
 public class MemberJNDIDAO implements MemberDAO{
 	private Connection conn = null;
